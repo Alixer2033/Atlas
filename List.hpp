@@ -102,3 +102,6 @@ int main() {
     _getch();
     return 0;
 }
+
+项目目录里建一个 in.txt 内容:
+3 2 5 6 8 7
