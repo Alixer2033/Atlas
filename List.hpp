@@ -6,7 +6,7 @@ using std::string;
 struct Node {
 	int Data_;
 	Node* next_;
-	Node() :next_(nullptr) {}
+	Node() :Data_(0), next_(nullptr) {}
 	Node(const int& Data) :Data_(Data), next_(nullptr) {}
 };
 
