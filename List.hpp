@@ -56,7 +56,26 @@ public:
 		head_ = tail_ = new Node(Data);
 		return true;
 	}
-
+	bool operator==(const List& list) {
+		Node* trav = head_;
+		Node* trav2 = list.head_;
+		while (trav) {
+			if (!trav2) {
+				return false;
+			}
+			else if (trav->Data_ != trav2->Data_) {
+				return false;
+			}
+			trav = trav->next_;
+			trav2 = trav2->next_;
+		}
+		if (trav2) {
+			return false;
+		}
+		else {
+			return true;
+		}
+	}
 };
 
 #endif
