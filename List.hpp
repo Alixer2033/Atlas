@@ -76,6 +76,26 @@ public:
 			return true;
 		}
 	}
+	friend ostream& operator<<(ostream& out, const List& list) {
+		Node* trav = list.head_;
+		while (trav) {
+			out << trav->Data_ << " ";
+			trav = trav->next_;
+		}
+		out << endl;
+		return out;
+	}
+	friend istream& operator>>(istream& in, List& list) {
+		while (in) {
+			int n;
+			in >> n;
+			if (!(list += n)) {
+				in.clear(std::ios::failbit);
+				return in;
+			}
+		}
+		return in;
+	}
 };
 
 #endif
