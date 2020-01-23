@@ -79,3 +79,26 @@ public:
 };
 
 #endif
+
+
+
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!  cpp: 
+#include <iostream>
+#include <fstream>
+#include <string>
+#include<conio.h>
+#include "List.hpp"
+using namespace std;
+int main() {
+    List list;
+    ifstream in;
+    in.open("in.txt");
+    in >> list;
+    list += 13;
+    list += 11;
+    list += 16;
+    list += 12;
+    cout << list;
+    _getch();
+	return 0;
+}
