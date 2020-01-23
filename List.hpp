@@ -28,7 +28,34 @@ public:
 			head_ = tail_;
 		}
 	}
-
+	bool operator+=(const int& Data) {
+		Node* trav = head_;
+		while (trav) {
+			if (trav->Data_ == Data) {
+				return false;
+			}
+			else if (trav->Data_ > Data) {
+				Node* node = new Node(Data);
+				node->next_ = head_;
+				head_ = node;
+				return true;
+			}
+			else if (trav->Data_ < Data && !trav->next_) {
+				tail_->next_ = new Node(Data);
+				tail_ = tail_->next_;
+				return true;
+			}
+			else if (trav->Data_ < Data && trav->next_->Data_ > Data) {
+				Node* node = new Node(Data);
+				node->next_ = trav->next_;
+				trav->next_ = node;
+				return true;
+			}
+			trav = trav->next_;
+		}
+		head_ = tail_ = new Node(Data);
+		return true;
+	}
 
 };
 
