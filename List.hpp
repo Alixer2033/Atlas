@@ -16,7 +16,11 @@ private:
 	Node* head_;
 	Node* tail_;
 public:
-	List():head_(nullptr),tail_(nullptr){}
+	List() :head_(nullptr), tail_(nullptr) {}
+	List(List&& list) noexcept:Name_(list.Name_), head_(list.head_), tail_(list.tail_) {
+		list.Name_ = "";
+		list.head_ = list.tail_ = nullptr;
+	}
 	~List() {
 		while (head_) {
 			tail_ = head_->next_;
