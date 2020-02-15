@@ -33,6 +33,44 @@ public:
 		}
 		delete[] Matrix_;
 	}
+	bool operator<(const Matrix<T>& obj) {
+		T l, r;
+		for (int i = 0; i < Row_; i++) {
+			for (int j = 0; j < Col_; j++) {
+				l += Matrix_[i][j];
+				r += obj.Matrix_[i][j];
+			}
+		}
+		l /= Size_;
+		r /= obj.Size_;
+		if (l < r) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	friend ostream& operator<<(ostream& out, const Matrix<T>& obj) {
+		SimplyNode* trav = list.head_;
+		while (trav) {
+			out << trav->Data_ << " ";
+			trav = trav->next_;
+		}
+		out << endl;
+		return out;
+	}
+	friend istream& operator>>(istream& in, Matrix<T>& obj) {
+		for(int i=0;i<Size_)
+		while (in) {
+			T n;
+			in >> n;
+			if (!(obj += n)) {
+				in.clear(std::ios::failbit);
+				return in;
+			}
+		}
+		return in;
+	}
 };
 
 #endif
