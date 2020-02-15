@@ -10,25 +10,25 @@ private:
 	int Size_;
 public:
 	Matrix(const int& Col, const int& Row) :
-		Col_(Col),
 		Row_(Row),
-		Size_(Col_* Row_),
+		Col_(Col),
+		Size_(Row_* Col_),
 		Matrix_(new T* [Row_])
 	{
-		for (int i = 0; i < Col_; i++) {
-			Matrix_[i] = new T[Row_];
+		for (int i = 0; i < Row_; i++) {
+			Matrix_[i] = new T[Col_];
 		}
 	}
 	Matrix(Matrix<T>&& obj)noexcept :
-		Col_(obj.Col_),
 		Row_(obj.Row_),
+		Col_(obj.Col_),
 		Size_(obj.Size_),
 		Matrix_(obj.Matrix_)
 	{
 		obj.Matrix_ = nullptr;
 	}
 	~Matrix() {
-		for (int i = 0; i < Col_; i++) {
+		for (int i = 0; i < Row_; i++) {
 			delete[] Matrix_[i];
 		}
 		delete[] Matrix_;
