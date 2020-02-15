@@ -39,10 +39,14 @@ public:
 		delete[] Matrix_;
 	}
 	bool operator<(const Matrix<T>& obj) {
-		T l, r;
+		T l = 0, r = 0;
 		for (int i = 0; i < Row_; i++) {
 			for (int j = 0; j < Col_; j++) {
 				l += Matrix_[i][j];
+			}
+		}
+		for (int i = 0; i < obj.Row_; i++) {
+			for (int j = 0; j < obj.Col_; j++) {
 				r += obj.Matrix_[i][j];
 			}
 		}
@@ -78,7 +82,6 @@ public:
 
 #endif
 
-
 #include "Matrix.hpp"
 #include <iostream>
 #include <fstream>
@@ -94,14 +97,14 @@ int main() {
 	in >> b;
 	cout << a << endl;
 	cout << b;
+	cout << (a < b);
 	return 0;
 }
 
-in.txt:
 1 2 3 4 5
 6 7 8 9 10
 11 12 13 14 15
-10 2 3 4 5 6
+1 2 3 4 5 6
 6 7 8 9 10 11
 11 12 13 14 15 16
 17 18 19 20 21 22
