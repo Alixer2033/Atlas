@@ -1,6 +1,11 @@
 #ifndef Matrix_hpp
 #define Matrix_hpp
 
+#include <iostream>
+using std::istream;
+using std::ostream;
+using std::endl;
+
 template <class T>
 class Matrix {
 private:
@@ -9,12 +14,12 @@ private:
 	int Row_;
 	int Size_;
 public:
-	Matrix(const int& Col, const int& Row) :
+	Matrix(const int& Row, const int& Col) :
 		Row_(Row),
 		Col_(Col),
-		Size_(Row_* Col_),
-		Matrix_(new T* [Row_])
+		Size_(Row_* Col_)
 	{
+		Matrix_ = new T * [Row_];
 		for (int i = 0; i < Row_; i++) {
 			Matrix_[i] = new T[Col_];
 		}
@@ -51,22 +56,20 @@ public:
 		}
 	}
 	friend ostream& operator<<(ostream& out, const Matrix<T>& obj) {
-		SimplyNode* trav = list.head_;
-		while (trav) {
-			out << trav->Data_ << " ";
-			trav = trav->next_;
-		}
+		for (int i = 0; i < obj.Row_; i++) {
+			for (int j = 0; j < obj.Col_; j++) {
+				out << obj.Matrix_[i][j] << " ";
+			}
 		out << endl;
+		}
 		return out;
 	}
 	friend istream& operator>>(istream& in, Matrix<T>& obj) {
-		for(int i=0;i<Size_)
-		while (in) {
-			T n;
-			in >> n;
-			if (!(obj += n)) {
-				in.clear(std::ios::failbit);
-				return in;
+		T n;
+		for (int i = 0; i < obj.Row_; i++) {
+			for (int j = 0; j < obj.Col_; j++) {
+				in >> n;
+				obj.Matrix_[i][j] = n;
 			}
 		}
 		return in;
