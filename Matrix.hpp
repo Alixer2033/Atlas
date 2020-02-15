@@ -15,8 +15,8 @@ public:
 		Size_(Col_* Row_),
 		Matrix_(new T* [Row_])
 	{
-		for (int i = 0; i < Row_; i++) {
-			Matrix_[i] = new T[Col_];
+		for (int i = 0; i < Col_; i++) {
+			Matrix_[i] = new T[Row_];
 		}
 	}
 	Matrix(Matrix<T>&& obj)noexcept :
@@ -28,7 +28,7 @@ public:
 		obj.Matrix_ = nullptr;
 	}
 	~Matrix() {
-		for (int i = 0; i < Row_; i++) {
+		for (int i = 0; i < Col_; i++) {
 			delete[] Matrix_[i];
 		}
 		delete[] Matrix_;
