@@ -13,8 +13,9 @@ private:
 	int Col_;
 	int Row_;
 	int Size_;
+	Matrix();
 public:
-	Matrix(const int& Row, const int& Col) :
+	Matrix(const unsigned int& Row, const unsigned int& Col) :
 		Row_(Row),
 		Col_(Col),
 		Size_(Row_* Col_)
@@ -78,6 +79,17 @@ public:
 		}
 		return in;
 	}
+	int numberOfRowsOrdered() {
+		int n = 0;
+		for (int i = 0; i < Row_; i++) {
+			bool check = true;
+			for (int j = 1; j < Col_; j++) {
+				if (Matrix_[i][j - 1] > Matrix_[i][j]) check = false;
+			}
+			if (check) n++;
+		}
+		return n;
+	}
 };
 
 #endif
@@ -90,14 +102,16 @@ using namespace std;
 
 int main() {
 	ifstream in;
-	Matrix<int> a(3, 5);
+	Matrix<int> a(-1, 5);
 	Matrix<int> b(4, 6);
 	in.open("in.txt");
 	in >> a;
 	in >> b;
 	cout << a << endl;
 	cout << b;
-	cout << (a < b);
+	cout << (a < b) << endl;
+	cout << a.numberOfRowsOrdered() << endl;
+	cout << b.numberOfRowsOrdered() << endl;
 	return 0;
 }
 
