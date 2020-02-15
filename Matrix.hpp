@@ -4,7 +4,7 @@
 template <class T>
 class Matrix {
 private:
-	T* Matrix_;
+	T** Matrix_;
 	int Col_;
 	int Row_;
 	int Size_;
@@ -13,8 +13,12 @@ public:
 		Col_(Col),
 		Row_(Row),
 		Size_(Col_* Row_),
-		Matrix_(new T[Size_])
-	{}
+		Matrix_(new T* [Row_])
+	{
+		for (int i = 0; i < Row_; i++) {
+			Matrix_[i] = new int[Col_];
+		}
+	}
 	Matrix(Matrix<T>&& obj)noexcept :
 		Col_(obj.Col_),
 		Row_(obj.Row_),
